@@ -33,7 +33,7 @@ class HTSAT(nn.Module):
         return self.sed_model(x, infer_mode)
 
     @torch.no_grad()
-    def embed_sound(self, f, device):
+    def embed_sound(self, f, device="cpu"):
         audio, sr = librosa.load(f, sr=None)
         audio, _ = librosa.effects.trim(audio, top_db=25)
         audio = torch.from_numpy(audio).float().unsqueeze(0)
